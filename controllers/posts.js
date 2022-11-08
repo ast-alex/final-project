@@ -38,7 +38,6 @@ const showPost = async (req, res = response) =>{
 }
 
 /// DELETE
-
 const deletePost = async (req, res = response) =>{
     try {
         
@@ -51,15 +50,49 @@ const deletePost = async (req, res = response) =>{
     }
 }
 
+/// NEW
+const newPost = (req, res = response) =>{
+    res.status(200).render('new')
+}
 
 /// CREATE
-const createPost = (req, res = response) =>{
-    res.render('new')
+const createPost = async (req, res = response) =>{
+    
+    try {
+        //console.log(req.body)
+        let post = new Post()
+        
+        post.title = req.body.title
+        post.body = req.body.body
+        
+        post = await post.save()
+        res.redirect(`/posts/${post.slug}`)
+        
+    } catch (error) {
+        console.log('Error Create', error)
+    }
+}
+
+/// Show POST FORM EDIT
+const showPostFormEdit = async (req, res = response) =>{
+    try {
+        const post = await Post.findById(req.params.id).lean()
+        
+        res.render('edit', {
+            title: 'Editando Post',
+            post
+        })
+        
+    } catch (error) {
+        console.log('Show Edit Post', error)
+    }
 }
 
 module.exports = {
     getPosts,
     showPost,
     deletePost,
-    createPost
+    createPost,
+    newPost,
+    showPostFormEdit
 }
