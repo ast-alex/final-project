@@ -1,9 +1,10 @@
 const express = require('express')
 const routerPosts = express.Router()
 
-const { getPosts, showPost, deletePost, newPost, createPost, showPostFormEdit,   } = require('../controllers/posts')
+const { getPosts, showPost, deletePost, newPost, createPost, showPostFormEdit, traerPostCards,   } = require('../controllers/posts')
 
 // Rutas de INDEX
+routerPosts.get('/', traerPostCards)
 routerPosts.get('/posts', getPosts)
 routerPosts.get('/posts/new', newPost)
 routerPosts.get('/posts/edit/:id', showPostFormEdit)

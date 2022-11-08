@@ -5,7 +5,7 @@ const methodOverride = require('method-override')
 require('dotenv').config()
 
 const { dbConnection } = require('./database/config')
-const routerIndex = require('./routes')
+const { routerAuth } = require('./routes/auth')
 const { routerDev } = require('./routes/db')
 const { routerPosts } = require('./routes/posts')
 
@@ -27,7 +27,7 @@ app.use(express.json())
 app.use(methodOverride('_method'))
 
 // Routes
-app.use('/', routerIndex)
+app.use('/', routerAuth)
 app.use('/', routerDev) // Solo para desarrollo
 app.use('/', routerPosts)
 

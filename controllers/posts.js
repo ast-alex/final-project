@@ -1,9 +1,26 @@
 const { response } = require('express')
 const Post = require('../models/posts')
 
-// index
+// MOSTRAR LOS POST EN CARDS
+const traerPostCards = async (req, res = response) =>{
+    try {
+        const posts = await Post.find({}).lean()  
+        //console.log(posts)
+        const title = "InfoBlog - Inicio"
+        res.status(200).render('home',
+            {
+                title,
+                posts
+            }
+        )
+    } catch (error) {
+        console.log('Error Home', error)
+    }
+}
+
+
+// INDEX
 const getPosts = async (req, res = response) => {
-    
     try {
         const posts = await Post.find({}).lean() // Me deja un objeto puro de JS    
         //console.log(posts)
@@ -19,7 +36,7 @@ const getPosts = async (req, res = response) => {
     }
 }
 
-// show
+// SHOW
 
 const showPost = async (req, res = response) =>{
     try {
@@ -94,5 +111,6 @@ module.exports = {
     deletePost,
     createPost,
     newPost,
-    showPostFormEdit
+    showPostFormEdit,
+    traerPostCards
 }

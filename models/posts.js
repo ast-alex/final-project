@@ -11,6 +11,8 @@ const postSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        // TODO: AGREGAR UN DATE
+        // TODO: HASHEAR LA CLAVE CON BCRYPT O CRYPTO NODE
         slug: {
             type: String,
             required: true,
