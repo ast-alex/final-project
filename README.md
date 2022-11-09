@@ -61,6 +61,10 @@ Conector para persistir la informacion de la sesion en MONGO
 
 <https://www.npmjs.com/package/connect-mongo>
 
+## Connect Flash
+
+<https://www.npmjs.com/package/connect-flash>
+
 ### FRAMEWORK HTML/CSS
 
 <!--BOOTSWATCH / BOOTSRAP-->

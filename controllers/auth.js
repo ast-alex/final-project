@@ -10,27 +10,29 @@ const signup = async (req, res = response) =>{
     const errors = []
     const { name, email, password, confirm_password } = req.body
     if ( password !== confirm_password ){
-        console.log('Password do not match.')
         errors.push({ msg: 'Password do not match.'})
     }
     if ( password.length <4 ){
-        console.log('Password must be at least 4 characters.')
         errors.push({ msg: 'Password must be at least 4 characters.'})
     }
     if ( errors.length > 0 ){
         return res.render('auth/signup', {
-            errors
+            errors,
+            name,
+            email,
         })
     }
     
     const userFound = await Auth.findOne({ email })
     if ( userFound ){
+        req.flash('todo_error', 'El Mail ya esta registrado.')
         return res.redirect('/auth/signup')
     }
     
     const newUser = new Auth({ name, email, password })
     newUser.password = await newUser.passwordEncrypt(password)
     await newUser.save()
+    req.flash('todo_ok', 'Se registro correctamente')
     res.redirect('/auth/signin')
 }
 const showAuthFormSignIn = (req, res = response) =>{
@@ -38,7 +40,8 @@ const showAuthFormSignIn = (req, res = response) =>{
 }
 const signin = passport.authenticate('local', {
     successRedirect: '/posts',
-    failureRedirect: '/auth/signin'
+    failureRedirect: '/auth/signin',
+    failureFlash: true,
 })
 
 const logout = async (req, res = response, next) =>{

@@ -1,4 +1,12 @@
 
+{{#if todo_ok}}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{todo_ok}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    
+{{/if}}
+
 <div class="col">
     <form action="/auth/signin" method="POST">
         {{! Correo}}
