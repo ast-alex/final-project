@@ -36,6 +36,31 @@ npm i mongoose
 npm i express-handlebars
 ```
 
+## Method Override
+
+<https://www.npmjs.com/package/method-override>
+
+## Sweet Alert 2
+
+<https://sweetalert2.github.io/>
+
+## Passport
+
+<https://www.passportjs.org/>
+
+## Passport Local
+
+<https://www.passportjs.org/packages/passport-local/>
+
+## Express Session
+
+<https://www.npmjs.com/package/express-session>
+
+## Connect Mongo
+Conector para persistir la informacion de la sesion en MONGO
+
+<https://www.npmjs.com/package/connect-mongo>
+
 ### FRAMEWORK HTML/CSS
 
 <!--BOOTSWATCH / BOOTSRAP-->
